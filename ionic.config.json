@@ -1,0 +1,7 @@
+{
+  "name": "ionic-capacitor-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "custom"
+}

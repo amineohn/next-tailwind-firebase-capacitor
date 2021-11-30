@@ -1,0 +1,57 @@
+html,
+body {
+  @apply font-default transition ease-in-out antialiased p-0 m-0;
+}
+
+body {
+  @apply bg-white transition-all;
+}
+
+a {
+  color: inherit;
+  @apply no-underline;
+}
+a,
+h1,
+h2,
+p {
+  @apply antialiased;
+}
+datalist {
+  @apply sticky border-2 border-opacity-50 border-gray-100 rounded-lg z-50 transition-all ease-linear max-h-80;
+}
+datalist:focus {
+  @apply hidden transition-all ease-linear;
+}
+datalist option {
+  @apply text-xs p-4 bg-white cursor-pointer transition-all ease-linear;
+}
+
+datalist option:hover,
+datalist option:focus {
+  @apply bg-gray-50 rounded-lg outline-none border-none transition-all ease-linear;
+}
+* {
+  @apply box-border;
+}
+::-webkit-scrollbar {
+  @apply hidden;
+}
+::-webkit-scrollbar-button {
+  @apply hidden;
+}
+::-webkit-scrollbar-track {
+  @apply hidden;
+}
+::-webkit-scrollbar-track-piece {
+  @apply hidden;
+}
+::-webkit-scrollbar-thumb {
+  @apply hidden;
+}
+::-webkit-scrollbar-corner {
+  @apply hidden;
+}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
