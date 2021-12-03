@@ -37,12 +37,11 @@ const signup = () => {
       setInterval(() => {
         setError("");
       }, 3500);
-      setError("Inscription réussie");
     } catch (error: any) {
       setError(error.message);
     }
     if (password.length < 6) {
-      setError("Le mot de passe doit être au moins de 6 caractères");
+      setError("Password must be at least 6 characters");
       return;
     }
     setFormData({
