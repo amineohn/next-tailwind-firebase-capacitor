@@ -44,3 +44,6 @@ out
 # lock
 package-lock.json
 yarn.lock
+
+# pnpm
+pnpm-lock.yaml
