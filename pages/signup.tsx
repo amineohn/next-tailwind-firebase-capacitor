@@ -80,13 +80,13 @@ const signup = () => {
       setInterval(() => {
         setError("");
       }, 3500);
-      setError("Veuillez saisir tous les champs");
+      setError("Please enter all fields");
     }
     if (!email.includes("@") || !email.includes(".") || email.length < 5) {
       setInterval(() => {
         setError("");
       }, 3500);
-      setError("Veuillez entrer un email valide");
+      setError("Please enter a valid email");
     }
     if (success) {
       setSuccess(false);
@@ -100,11 +100,10 @@ const signup = () => {
       }, 3500);
       setProgressBar(true);
 
-      setError("Le mot de passe doit être au moins de 6 caractères");
+      setError("Password must be at least 6 characters");
       return;
     }
   };
-  // progress bar if password is less than 6
   return (
     <>
       <NextSeo
@@ -170,7 +169,7 @@ const signup = () => {
                   <div className="inline-flex justify-center space-x-2">
                     <div className="flex">
                       <p className="text-white text-xs font-medium">
-                        Inscription réussie
+                        Successful registration
                       </p>
                     </div>
                   </div>
@@ -193,14 +192,14 @@ const signup = () => {
                 className="block text-gray-700 text-sm font-bold mb-2"
                 htmlFor="name"
               >
-                Nom
+                Name
               </label>
               <input
                 className="shadow appearance-none border rounded-lg w-full py-2 px-3 bg-white text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="name"
                 type="text"
                 name="name"
-                placeholder="Nom"
+                placeholder="Name"
                 value={name}
                 onChange={(e) => onChange(e)}
               />
@@ -210,14 +209,14 @@ const signup = () => {
                 className="block text-gray-700 text-sm font-bold mb-2"
                 htmlFor="email"
               >
-                Mail
+                Email
               </label>
               <input
                 className="shadow appearance-none border rounded-lg w-full py-2 px-3 bg-white text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="email"
                 type="email"
                 name="email"
-                placeholder="Mail"
+                placeholder="Email"
                 value={email}
                 onChange={(e) => onChange(e)}
               />
@@ -227,20 +226,20 @@ const signup = () => {
                 className="block text-gray-700 text-sm font-bold mb-2"
                 htmlFor="password"
               >
-                Mot de passe
+                Password
               </label>
               <input
                 className="shadow appearance-none border rounded-lg w-full py-2 px-3 bg-white text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                 id="password"
                 type="password"
                 name="password"
-                placeholder="Mot de passe"
+                placeholder="********"
                 value={password}
                 onChange={(e) => onChange(e)}
               />
               {password.length < 6 && (
                 <p className="text-gray-600 text-xs italic">
-                  Le mot de passe doit contenir au moins 6 caractères
+                  Password must contain at least 6 characters
                 </p>
               )}
             </div>
@@ -251,7 +250,7 @@ const signup = () => {
                 type="submit"
                 onClick={(e) => onSubmit(e)}
               >
-                S'inscrire
+                Sign Up
               </button>
             </div>
           </form>

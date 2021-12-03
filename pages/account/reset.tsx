@@ -20,15 +20,15 @@ const NewPassword: NextPage = () => {
     setLoading(true);
 
     if (currentPassword === "" || newPassword === "") {
-      setError("Veuillez remplir tous les champs");
+      setError("Please complete all fields");
       setLoading(false);
     }
     if (currentPassword.length < 6 || newPassword.length < 6) {
-      setError("Votre mot de passe doit contenir au moins 6 caractères");
+      setError("Your password must contain at least 6 characters");
       setLoading(false);
     }
     if (currentPassword === newPassword) {
-      setError("Votre nouveau mot de passe doit être différent de l'ancien");
+      setError("Your new password must be different from the old one");
       setLoading(false);
     }
     if (
@@ -109,7 +109,7 @@ const NewPassword: NextPage = () => {
                 <div className="inline-flex justify-center space-x-2">
                   <div className="flex">
                     <p className="text-white text-xs font-medium">
-                      Mot de passe changer avec succès
+                      Password successfully changed
                     </p>
                   </div>
                 </div>
@@ -130,10 +130,10 @@ const NewPassword: NextPage = () => {
           <div className="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4">
             <div className="mb-4">
               <h1 className="text-center text-2xl text-gray-800 font-bold">
-                Changement de mot de passe
+                Password change
               </h1>
               <p className="text-center text-gray-700 text-xs">
-                Entrez votre nouveau mot de passe
+                Enter your new password
               </p>
             </div>
             <form onSubmit={forgetPassword}>
@@ -142,13 +142,13 @@ const NewPassword: NextPage = () => {
                   className="block text-gray-700 text-sm font-bold mb-2"
                   htmlFor="password"
                 >
-                  Mot de passe Actuel
+                  Current Password
                 </label>
                 <input
                   className="shadow appearance-none border bg-white rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   id="password"
                   type="password"
-                  placeholder="Mot de passe"
+                  placeholder="Enter your current password"
                   value={currentPassword}
                   onChange={(e) => setCurrentPassword(e.target.value)}
                 />
@@ -158,13 +158,13 @@ const NewPassword: NextPage = () => {
                   className="block text-gray-700 text-sm font-bold mb-2"
                   htmlFor="newPassword"
                 >
-                  Nouveau Mot de passe
+                  New Password
                 </label>
                 <input
                   className="shadow appearance-none border bg-white rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   id="newPassword"
                   type="newPassword"
-                  placeholder="Nouveau Mot de passe"
+                  placeholder="New password"
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
                 />
@@ -174,7 +174,7 @@ const NewPassword: NextPage = () => {
                   className="py-2 px-4 flex justify-center items-center bg-greenDDTV hover:bg-green-800 focus:ring-green-800 focus:ring-offset-green-100 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
                   type="submit"
                 >
-                  {loading ? <Loading message="Chargement" /> : "Envoyer"}
+                  {loading ? <Loading message="Chargement" /> : "Send"}
                 </button>
               </div>
             </form>

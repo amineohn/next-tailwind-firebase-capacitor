@@ -23,99 +23,91 @@ export class Validate {
     return form.send.frequency.test(frequency);
   }
   errors(code: string, message: string) {
+    // list of errors codes and messages firebase english language with switch
     switch (code) {
-      case "auth/invalid-custom-token":
-        message =
-          "Le format du token(custom) est incorrect. Veuillez vérifier la documentation.";
-        break;
-      case "auth/custom-token-mismatch":
-        message = "Le token(custom) correspond à une audience différente.";
-        break;
-      case "auth/invalid-credential":
-        message =
-          "Les informations d'authentification fournies sont mal formées ou ont expiré.";
-        break;
-      case "auth/operation-not-allowed":
-        message =
-          "La connexion par mot de passe est désactivée pour ce projet.";
-        break;
-      case "auth/user-disabled":
-        message =
-          "Le compte utilisateur a été désactivé par un administrateur.";
-        break;
-      case "auth/user-token-expired":
-        message =
-          "Les informations d'identification de l'utilisateur ne sont plus valides. L'utilisateur doit se reconnecter.";
-        break;
-      case "auth/web-storage-unsupported":
-        message =
-          "Le navigateur de l'utilisateur ne prend pas en charge le stockage Web.";
-        break;
+      case "auth/email-already-in-use":
+        message = "The email address is already in use by another account.";
       case "auth/invalid-email":
-        message = "L'adresse e-mail n'est pas valide.";
-        break;
+        message = "The email address is badly formatted.";
+      case "auth/operation-not-allowed":
+        message = "Password sign-in is disabled for this project.";
+      case "auth/weak-password":
+        message =
+          "The password is invalid or the user does not have a password.";
       case "auth/user-not-found":
         message =
-          "Il n'y a pas d'enregistrement utilisateur correspondant à cet identifiant.";
-        break;
+          "There is no user record corresponding to this identifier. The user may have been deleted.";
+      case "auth/user-disabled":
+        message = "The user account has been disabled by an administrator.";
       case "auth/wrong-password":
         message =
-          "Le mot de passe est invalide ou l'utilisateur n'a pas de mot de passe.";
-        break;
-      case "auth/email-already-in-use":
-        message = "L'adresse e-mail est déjà utilisée par un autre compte.";
-        break;
-      case "auth/weak-password":
-        message = "Le mot de passe doit contenir au moins 6 caractères.";
-        break;
-      case "auth/requires-recent-login":
-        message = "L'utilisateur doit se reconnecter avec son compte récent.";
-        break;
-      case "auth/user-mismatch":
+          "The password is invalid or the user does not have a password.";
+      case "auth/too-many-requests":
         message =
-          "L'utilisateur n'est pas autorisé à se connecter avec ce compte.";
-        break;
-      case "auth/invalid-api-key":
-        message = "La clé API fournie est invalide ou a expiré.";
-        break;
+          "Too many unsuccessful login attempts.  Please try again later.";
       case "auth/network-request-failed":
         message =
-          "La requête de réseau a échoué. Veuillez vérifier votre connexion Internet.";
-        break;
-      case "auth/popup-blocked":
+          "A network error (such as timeout, interrupted connection or unreachable host) has occurred.";
+      case "auth/invalid-api-key":
+        message = "The API key is invalid.";
+      case "auth/app-deleted":
         message =
-          "Le navigateur a bloqué une fenêtre pop-up. Veuillez vérifier que le bloqueur de fenêtres pop-up est désactivé.";
-        break;
-      case "auth/popup-closed-by-user":
-        message = "La fenêtre pop-up a été fermée par l'utilisateur.";
-        break;
-      case "auth/unauthorized-domain":
-        message = "L'adresse e-mail n'est pas autorisée pour ce domaine.";
-        break;
-      case "auth/invalid-action-code":
-        message = "Le code d'action fourni est invalide ou a expiré.";
-        break;
+          "The application corresponding to the API key has been deleted.";
+      case "auth/invalid-user-token":
+        message =
+          "The user's credential is no longer valid. The user must sign in again.";
+      case "auth/user-token-expired":
+        message =
+          "The user's credential is no longer valid. The user must sign in again.";
+      case "auth/web-storage-unsupported":
+        message = "The browser does not support web storage.";
+      case "auth/invalid-credential":
+        message = "The supplied auth credential is malformed or has expired.";
       case "auth/invalid-verification-code":
-        message = "Le code de vérification fourni est invalide.";
-        break;
-      case "auth/invalid-verification-id":
-        message = "L'ID de vérification fourni est invalide.";
-        break;
-      case "auth/invalid-phone-number":
-        message = "Le numéro de téléphone fourni est invalide.";
-        break;
-      case "auth/quota-exceeded":
         message =
-          "La limite de quota a été dépassée. Veuillez réessayer ultérieurement.";
-        break;
-      case "auth/user-cancelled":
+          "The SMS verification code used to create the phone auth credential is invalid. Please resend the verification code sms and be sure use the verification code provided by the user.";
+      case "auth/missing-verification-id":
         message =
-          "L'utilisateur a annulé l'opération. L'opération n'a pas été exécutée.";
-        break;
-
-      default:
-        message = "Une erreur inconnue s'est produite.";
-        break;
+          "The verification ID used to create the phone auth credential is missing.";
+      case "auth/invalid-continue-uri":
+        message = "The continue URL provided in the request is invalid.";
+      case "auth/unauthorized-continue-uri":
+        message =
+          "The domain of the continue URL is not whitelisted. Whitelist the domain in the Firebase console.";
+      case "auth/invalid-dynamic-link-domain":
+        message =
+          "The dynamically-generated link is not associated with the given dynamic link domain.";
+      case "auth/argument-error":
+        message = "A required argument is missing.";
+      case "auth/app-not-authorized":
+        message =
+          "The application is not authorized to use Firebase Authentication with the provided API key.";
+      case "auth/expired-action-code":
+        message = "The action code has expired. ";
+      case "auth/cancelled-popup-request":
+        message =
+          "The popup has been closed by the user before finalizing the sign-in.";
+      case "auth/internal-error":
+        message = "An internal error has occurred.";
+      case "auth/invalid-custom-token":
+        message =
+          "The custom token format is incorrect. Please check the documentation.";
+      case "auth/custom-token-mismatch":
+        message = "The custom token corresponds to a different audience.";
+      case "auth/invalid-credential":
+        message = "The supplied auth credential is malformed or has expired.";
+      case "auth/invalid-message-payload":
+        message =
+          "The email template corresponding to this action contains invalid characters in its message. Please fix by going to the Auth email templates section in the Firebase Console.";
+      case "auth/invalid-oauth-provider":
+        message =
+          "The OAuth provider is invalid. Please check the provider name.";
+      case "auth/unauthorized-domain":
+        message =
+          "This domain is not authorized for OAuth operations for your Firebase project. Edit the list of authorized domains from the Firebase console.";
+      case "auth/invalid-action-code":
+        message =
+          "The action code is invalid. This can happen if the code is malformed, expired, or has already been used.";
     }
     return message;
   }

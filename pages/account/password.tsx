@@ -18,7 +18,7 @@ const forgetPassword: NextPage = () => {
     e.preventDefault();
     setLoading(true);
     if (!email) {
-      setError("Veuillez entrer votre email");
+      setError("Please enter your email");
       setInterval(() => {
         setError("");
       }, 3500);
@@ -26,7 +26,7 @@ const forgetPassword: NextPage = () => {
       return;
     }
     if (!email.includes("@") || !email.includes(".") || email.length < 5) {
-      setError("Veuillez entrer un email valide");
+      setError("Please enter a valid email");
       setLoading(false);
       return;
     }
@@ -102,8 +102,7 @@ const forgetPassword: NextPage = () => {
                 <div className="inline-flex justify-center space-x-2">
                   <div className="flex">
                     <p className="text-white text-xs font-medium">
-                      Nous vous avons envoyé un e-mail pour réinitialiser votre
-                      mot de passe.
+                      We have sent you an email to reset your password.
                     </p>
                   </div>
                 </div>
@@ -124,10 +123,10 @@ const forgetPassword: NextPage = () => {
           <div className="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4">
             <div className="mb-4">
               <h1 className="text-center text-2xl font-bold">
-                Mot de passe oublié
+                Forgot your password
               </h1>
               <p className="text-center text-gray-700 text-xs">
-                Entrez votre adresse email pour réinitialiser votre mot de passe
+                Enter your email address to reset your password
               </p>
             </div>
             <form onSubmit={forgetPassword}>
@@ -152,7 +151,7 @@ const forgetPassword: NextPage = () => {
                   className="py-2 px-4 flex justify-center items-center bg-greenDDTV hover:bg-green-800 focus:ring-green-800 focus:ring-offset-green-100 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
                   type="submit"
                 >
-                  {loading ? <Loading message="Chargement" /> : "Envoyer"}
+                  {loading ? <Loading message="Chargement" /> : "Send"}
                 </button>
               </div>
             </form>

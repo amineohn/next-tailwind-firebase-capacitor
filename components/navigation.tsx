@@ -35,10 +35,10 @@ const Navigation = () => {
                 />
                 <div className="ml-3">
                   <p className="text-sm font-semibold text-green-50">
-                    {fire.userName() ? fire.userName() : "Anonyme"}
+                    {fire.userName() ? fire.userName() : "Anonymous"}
                   </p>
                   <p className="text-xs text-green-200">
-                    {fire.email() ? fire.email() : "anonyme@email.com"}
+                    {fire.email() ? fire.email() : "anonymous@email.com"}
                   </p>
                 </div>
               </div>
@@ -63,7 +63,7 @@ const Navigation = () => {
                         d="M416 448h-84c-6.6 0-12-5.4-12-12v-24c0-6.6 5.4-12 12-12h84c26.5 0 48-21.5 48-48V160c0-26.5-21.5-48-48-48h-84c-6.6 0-12-5.4-12-12V76c0-6.6 5.4-12 12-12h84c53 0 96 43 96 96v192c0 53-43 96-96 96zM167.1 83.5l-19.6 19.6c-4.8 4.8-4.7 12.5.2 17.1L260.8 230H12c-6.6 0-12 5.4-12 12v28c0 6.6 5.4 12 12 12h248.8L147.7 391.7c-4.8 4.7-4.9 12.4-.2 17.1l19.6 19.6c4.7 4.7 12.3 4.7 17 0l164.4-164c4.7-4.7 4.7-12.3 0-17l-164.4-164c-4.7-4.6-12.3-4.6-17 .1z"
                       ></path>
                     </svg>
-                    <span className="text-green-100">Connexion</span>
+                    <span className="text-green-100">Sign In</span>
                   </a>
                 </>
               ) : (
@@ -108,7 +108,7 @@ const Navigation = () => {
                           d="M400 224h-24v-72C376 68.2 307.8 0 224 0S72 68.2 72 152v72H48c-26.5 0-48 21.5-48 48v192c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V272c0-26.5-21.5-48-48-48zM264 392c0 22.1-17.9 40-40 40s-40-17.9-40-40v-48c0-22.1 17.9-40 40-40s40 17.9 40 40v48zm32-168H152v-72c0-39.7 32.3-72 72-72s72 32.3 72 72v72z"
                         ></path>
                       </svg>
-                      <span>Réinitialiser votre mot de passe</span>
+                      <span>Reset your password</span>
                     </a>
                   ) : null}
                   <a
@@ -129,7 +129,7 @@ const Navigation = () => {
                         d="M272 112v51.6h-96c-26.5 0-48 21.5-48 48v88.6c0 26.5 21.5 48 48 48h96v51.6c0 42.6 51.7 64.2 81.9 33.9l144-143.9c18.7-18.7 18.7-49.1 0-67.9l-144-144C323.8 48 272 69.3 272 112zm192 144L320 400v-99.7H176v-88.6h144V112l144 144zM96 64h84c6.6 0 12 5.4 12 12v24c0 6.6-5.4 12-12 12H96c-26.5 0-48 21.5-48 48v192c0 26.5 21.5 48 48 48h84c6.6 0 12 5.4 12 12v24c0 6.6-5.4 12-12 12H96c-53 0-96-43-96-96V160c0-53 43-96 96-96z"
                       ></path>
                     </svg>
-                    <span>Déconnexion</span>
+                    <span>Logout</span>
                   </a>
                 </>
               )}
