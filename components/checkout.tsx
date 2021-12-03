@@ -1,5 +1,5 @@
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import Loading from "./loading";
 
 const Checkout = () => {
@@ -8,7 +8,7 @@ const Checkout = () => {
 
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
 
     if (elements == null) {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import "firebase/compat/firestore";
 import "firebase/compat/auth";
 import FadeIn from "react-fade-in";
@@ -27,7 +27,7 @@ const signup = () => {
 
   // progress bar animation end
 
-  const onSubmit = async (e) => {
+  const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
       await fire.signUp(email, password);
