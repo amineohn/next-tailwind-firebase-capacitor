@@ -6,6 +6,7 @@ import { Transition } from "@headlessui/react";
 import { Firebase } from "../libs/firebase";
 import router from "next/router";
 import { NextSeo } from "next-seo";
+import { configuration } from "../configuration";
 
 const signup = () => {
   const [error, setError] = useState("");
@@ -30,7 +31,7 @@ const signup = () => {
     e.preventDefault();
     try {
       await fire.signUp(email, password);
-      await fire.getAuth().currentUser?.updateProfile({
+      await fire.user()?.updateProfile({
         displayName: name,
       });
       setInterval(() => {
@@ -61,7 +62,7 @@ const signup = () => {
     }, 2000);
 
     try {
-      await fire.getCollection("users").add({
+      await fire.collection("users").add({
         name,
         email,
         password,
@@ -107,18 +108,18 @@ const signup = () => {
   return (
     <>
       <NextSeo
-        title="Demo | SignUp"
-        description=""
+        title={configuration.title}
+        description={configuration.description}
         openGraph={{
-          url: "http://URL.com",
-          title: "Demo",
-          description: "",
+          url: configuration.openGraph.url,
+          title: configuration.openGraph.title,
+          description: configuration.openGraph.description,
           images: [
             {
-              url: "/static/images/logos.jpg",
-              width: 800,
-              height: 600,
-              alt: "Hello",
+              url: configuration.openGraph.image,
+              width: configuration.openGraph.width,
+              height: configuration.openGraph.height,
+              alt: configuration.openGraph.alt,
             },
           ],
         }}
@@ -129,7 +130,7 @@ const signup = () => {
             className="fill-current text-black text-2xl font-bold"
             onClick={() => router.push("/")}
           >
-            Back
+            Logo
           </button>
         </div>
         <div className="w-full max-w-xs">

@@ -5,5 +5,9 @@ export const form = {
     collectTime: /^[0-9]{1,2}:[0-9]{2}$/,
     address: /^[a-zA-Z0-9\s,'-]{1,}$/,
     phone: /^[0-9]{10}$/,
+    password:
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+    name: /^[a-zA-Z\s]{1,}$/,
+    frequency: /^[0-9]{1,2}$/,
   },
 };

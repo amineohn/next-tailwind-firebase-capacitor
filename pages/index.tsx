@@ -6,6 +6,7 @@ import Loading from "../components/loading";
 import Link from "next/link";
 import { Transition } from "@headlessui/react";
 import { Firebase } from "../libs/firebase";
+import { Validate } from "../libs/validate";
 const Home: NextPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,8 +16,9 @@ const Home: NextPage = () => {
   const [redirection, setRedirection] = useState(false);
   const router = useRouter();
 
+  const check = new Validate();
   const fire = new Firebase();
-  fire.getAuth().onAuthStateChanged((user) => {
+  fire.stateChanged((user) => {
     if (user) {
       setRedirection(true);
       router.push("/hello");
@@ -25,7 +27,7 @@ const Home: NextPage = () => {
   const authenticateWithGoogle = async () => {
     try {
       setLoading(true);
-      await fire.signWithGoogle("signInWithRedirect");
+      await fire.signWith("redirectAndLink");
       setLoading(false);
     } catch (error: any) {
       setLoading(false);
@@ -60,14 +62,14 @@ const Home: NextPage = () => {
     }
 
     try {
-      await fire.signIn(email, password, "users", "/hello", fire.getUserId());
+      await fire.signIn(email, password, "users", "/hello", fire.id());
       await setRedirection(true);
       await setLoading(false);
       await setSuccess(true);
     } catch (error: any) {
       setLoading(false);
       setRedirection(false);
-      const messages = fire.getErrors(error.code, error.message);
+      const messages = check.errors(error.code, error.message);
       setError(messages);
     }
     setRedirection(false);
@@ -112,7 +114,7 @@ const Home: NextPage = () => {
             className="fill-current text-black text-2xl font-bold"
             onClick={() => router.push("/")}
           >
-            Back
+            Logo
           </button>
         </div>
         <div className="container mx-auto px-4 py-16 max-w-xs transition-all duration-100">

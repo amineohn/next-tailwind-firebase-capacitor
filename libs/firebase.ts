@@ -8,7 +8,7 @@ import "firebase/compat/performance";
 import "firebase/messaging";
 import router from "next/router";
 export class Firebase {
-  getSettings() {
+  settings() {
     return {
       apiKey: "AIzaSyDB6kaXHG4Hycn-C57tgXZkz2CQeIm0Cs8",
       authDomain: "fir-b57a9.firebaseapp.com",
@@ -20,154 +20,160 @@ export class Firebase {
     };
   }
   constructor() {
-    firebase.initializeApp(this.getSettings());
+    firebase.initializeApp(this.settings());
     console.log("Initialize Firebase app(s): %d", firebase.apps.length);
   }
 
-  getUser() {
+  user() {
     return firebase.auth().currentUser;
   }
-  getUserName() {
-    return this.getUser()?.displayName;
+
+  isUser() {
+    return this.user() ? true : false;
   }
-  getPhotoUrl() {
-    return this.getUser()?.photoURL;
+
+  userName() {
+    return this.user()?.displayName;
   }
-  getDefaultPhotoUrl() {
+
+  photoUrl() {
+    return this.user()?.photoURL;
+  }
+
+  defaultPhotoUrl() {
     return "/static/images/blank-profile.png";
   }
-  getEmail() {
-    return this.getUser()?.email;
+
+  email() {
+    return this.user()?.email;
   }
-  getTokenId() {
-    return this.getAuth().currentUser?.getIdToken();
+
+  tokenId() {
+    return this.user()?.getIdToken();
   }
-  getUserData() {
-    return firebase.firestore().collection("users").doc(this.getUser()?.uid);
+
+  userData() {
+    return this.getFireStore().collection("users").doc(this.user()?.uid);
   }
+
+  isConnected() {
+    return this.auth().currentUser !== null;
+  }
+
   getStorage() {
     return firebase.storage();
   }
+
   getFireStore() {
     return firebase.firestore();
   }
-  getAuth() {
+
+  auth() {
     return firebase.auth();
   }
-  getMessaging() {
+
+  messaging() {
     return firebase.messaging();
   }
-  getFirebase() {
+
+  firebase() {
     return firebase;
   }
-  getAnalytics() {
+
+  database() {
+    return firebase.database();
+  }
+
+  analytics() {
     return firebase.analytics();
   }
-  getFunctions() {
+
+  functions() {
     return firebase.functions();
   }
-  getCollection(collection: string) {
+
+  collection(collection: string) {
     return firebase.firestore().collection(collection);
   }
-  getUserId() {
-    return this.getUser()?.uid;
+  collectionId(collection: string) {
+    return this.collection(collection).doc().id;
   }
-  getPerformance() {
+
+  reference(ref: string, child: string) {
+    return this.database().ref(ref).child(child);
+  }
+  emptyString(str: string) {
+    return str === "";
+  }
+  documentPath(collection: string, documentPath: string) {
+    return this.collection(collection).doc(documentPath);
+  }
+
+  id() {
+    return this.user()?.uid;
+  }
+
+  performance() {
     return firebase.performance();
   }
-  currentPassword(currentPassword) {
+
+  import(url: string) {
+    return this.functions().httpsCallable(url);
+  }
+
+  stateChanged(callback: (user: firebase.User | null) => void) {
+    const auth = this.auth();
+    auth.onAuthStateChanged(callback);
+  }
+
+  currentPassword(currentPassword: string) {
     const credential = firebase.auth.EmailAuthProvider.credential(
-      this.getEmail() as string,
+      this.email() as string,
       currentPassword
     );
-    return this.getUser()?.reauthenticateWithCredential(credential);
+    return this.user()?.reauthenticateWithCredential(credential);
   }
-  updatePassword(currentPassword, newPassword) {
+
+  updatePassword(currentPassword: string, newPassword: string) {
     this.currentPassword(currentPassword)?.then(() => {
-      return this.getUser()?.updatePassword(newPassword);
+      return this.user()?.updatePassword(newPassword);
     });
   }
-  getErrors(code: string, errorMessage: string) {
-    switch (code) {
-      case "auth/invalid-custom-token":
-        errorMessage =
-          "Le format du token(custom) est incorrect. Veuillez vérifier la documentation.";
-        break;
-      case "auth/custom-token-mismatch":
-        errorMessage = "Le token(custom) correspond à une audience différente.";
-        break;
-      case "auth/invalid-credential":
-        errorMessage =
-          "Les informations d'authentification fournies sont mal formées ou ont expiré.";
-        break;
-      case "auth/operation-not-allowed":
-        errorMessage =
-          "La connexion par mot de passe est désactivée pour ce projet.";
-        break;
-      case "auth/user-disabled":
-        errorMessage =
-          "Le compte utilisateur a été désactivé par un administrateur.";
-        break;
-      case "auth/user-token-expired":
-        errorMessage =
-          "Les informations d'identification de l'utilisateur ne sont plus valides. L'utilisateur doit se reconnecter.";
-        break;
-      case "auth/web-storage-unsupported":
-        errorMessage =
-          "Le navigateur de l'utilisateur ne prend pas en charge le stockage Web.";
-        break;
-      case "auth/invalid-email":
-        errorMessage = "L'adresse e-mail n'est pas valide.";
-        break;
-      case "auth/user-not-found":
-        errorMessage =
-          "Il n'y a pas d'enregistrement utilisateur correspondant à cet identifiant.";
-        break;
-      case "auth/wrong-password":
-        errorMessage =
-          "Le mot de passe est invalide ou l'utilisateur n'a pas de mot de passe.";
-        break;
-      case "auth/email-already-in-use":
-        errorMessage =
-          "L'adresse e-mail est déjà utilisée par un autre compte.";
-        break;
-      case "auth/weak-password":
-        errorMessage = "Le mot de passe doit contenir au moins 6 caractères.";
-        break;
-      case "auth/requires-recent-login":
-        errorMessage =
-          "L'utilisateur doit se reconnecter avec son compte récent.";
-        break;
-      case "auth/user-mismatch":
-        errorMessage =
-          "L'utilisateur n'est pas autorisé à se connecter avec ce compte.";
-        break;
-      case "auth/invalid-api-key":
-        errorMessage = "La clé API fournie est invalide ou a expiré.";
-        break;
-      case "auth/network-request-failed":
-        errorMessage =
-          "La requête de réseau a échoué. Veuillez vérifier votre connexion Internet.";
-        break;
-      case "auth/popup-blocked":
-        errorMessage =
-          "Le navigateur a bloqué une fenêtre pop-up. Veuillez vérifier que le bloqueur de fenêtres pop-up est désactivé.";
-        break;
-      case "auth/popup-closed-by-user":
-        errorMessage = "La fenêtre pop-up a été fermée par l'utilisateur.";
-        break;
-      case "auth/unauthorized-domain":
-        errorMessage = "L'adresse e-mail n'est pas autorisée pour ce domaine.";
-        break;
-      case "auth/invalid-action-code":
-        errorMessage = "Le code d'action fourni est invalide ou a expiré.";
-        break;
-      default:
-        errorMessage = "Une erreur inconnue s'est produite.";
-        break;
-    }
-    return errorMessage;
+
+  async snapshot(collection: string, documentPath: string) {
+    return await this.collection(collection)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          if (doc.id === documentPath) {
+            return doc.data();
+          }
+        });
+      })
+      .then((data) => data)
+      .catch((error) => console.log("Error getting documents: ", error));
   }
+
+  data(
+    phone: string,
+    name: string,
+    email: string,
+    frequency: string,
+    collectTime: string,
+    address: string,
+    collection: string
+  ) {
+    return {
+      id: this.collection(collection).doc().id,
+      phone: phone,
+      name: name,
+      email: email,
+      frequency: frequency,
+      collectTime: collectTime,
+      address: address,
+    };
+  }
+
   async signIn(
     email: string,
     password: string,
@@ -175,33 +181,71 @@ export class Firebase {
     url: string,
     documentPath?: string | undefined
   ) {
-    const auth = this.getAuth();
-    return await auth
-      .signInWithEmailAndPassword(email, password)
-      .then(async () => {
-        await router.push(url);
-        await this.getCollection(collection).doc(documentPath).set({
-          name: this.getUserName(),
-          email: this.getEmail(),
-        });
+    return await this.sign(email, password).then(async () => {
+      await router.push(url);
+      await this.collection(collection).doc(documentPath).set({
+        name: this.userName(),
+        email: this.email(),
       });
+    });
   }
-  async sendEmailVerification() {
-    const user = this.getUser();
+  async sign(email: string, password: string) {
+    const auth = this.auth();
+    return await auth.signInWithEmailAndPassword(email, password);
+  }
+
+  async emailVerification() {
+    const user = this.user();
     await user?.sendEmailVerification();
   }
-  async sendPasswordResetEmail(email: string) {
-    const auth = this.getAuth();
+
+  async passwordResetEmail(email: string) {
+    const auth = this.auth();
     await auth.sendPasswordResetEmail(email);
   }
+
+  async update(collection: string, documentPath: string, data: any) {
+    const collectionRef = this.collection(collection);
+    const documentRef = collectionRef.doc(documentPath);
+    await documentRef.update(data);
+  }
+
+  async create(collection: string, data: any) {
+    const collectionRef = this.collection(collection);
+    await collectionRef.add(data);
+  }
+
+  async delete(collection: string, documentPath: string) {
+    const collectionRef = this.collection(collection);
+
+    const documentRef = collectionRef.doc(documentPath);
+    await documentRef.delete();
+  }
+
+  async get(collection: string, documentPath: string) {
+    const collectionRef = this.collection(collection);
+    const documentRef = collectionRef.doc(documentPath);
+    return await documentRef.get();
+  }
+
+  async getAll(collection: string) {
+    const collectionRef = this.collection(collection);
+    return await collectionRef.get();
+  }
+
+  async getAllByField(collection: string, field: string, value: any) {
+    const collectionRef = this.collection(collection);
+    return await collectionRef.where(field, "==", value).get();
+  }
+
   async updateUser(collection: string, documentPath: string, data: any) {
-    const user = this.getUser();
-    const userData = this.getUserData();
+    const user = this.user();
+    const userData = this.userData();
 
     if (userData) {
-      await this.getCollection(collection).doc(documentPath).update(data);
+      await this.collection(collection).doc(documentPath).update(data);
     } else {
-      await this.getCollection(collection).doc(documentPath).set(data);
+      await this.collection(collection).doc(documentPath).set(data);
     }
     if (user) {
       await user.updateProfile({
@@ -211,30 +255,42 @@ export class Firebase {
     }
 
     return await userData.update(data).then(async () => {
-      await this.getCollection(collection).doc(documentPath).set({
-        name: this.getUserName(),
-        email: this.getEmail(),
+      await this.collection(collection).doc(documentPath).set({
+        name: this.userName(),
+        email: this.email(),
       });
     });
   }
+
   async signUp(email: string, password: string) {
-    const auth = this.getAuth();
+    const auth = this.auth();
     await auth.createUserWithEmailAndPassword(email, password);
   }
-  async signWithGoogle(sign) {
-    const auth = this.getAuth();
+
+  async signWithGithub() {
+    const auth = this.auth();
+    const provider = new firebase.auth.GithubAuthProvider();
+    return await auth.signInWithPopup(provider);
+  }
+
+  async signWith(sign: string) {
+    const auth = this.auth();
     const provider = new firebase.auth.GoogleAuthProvider();
     switch (sign) {
-      case "signIn":
+      case "withPopup":
         await auth.signInWithPopup(provider);
         await firebase.auth().getRedirectResult();
         break;
-      case "signInWithRedirect":
+      case "redirect":
         await auth.signInWithRedirect(provider);
         await firebase.auth().getRedirectResult();
         break;
-      case "signInWithRedirectAndLink":
+      case "redirectAndLink":
         await auth.signInWithRedirect(provider);
+        await firebase.auth().getRedirectResult();
+        break;
+      case "withGithub":
+        await this.signWithGithub();
         await firebase.auth().getRedirectResult();
         break;
 
@@ -242,8 +298,19 @@ export class Firebase {
         break;
     }
   }
+  interceptor(url: string, callback: (error: any) => void) {
+    this.functions().httpsCallable(url).call(callback);
+  }
+  async phoneSignIn(
+    phoneNumber: string,
+    verificationCode: firebase.auth.ApplicationVerifier
+  ) {
+    const auth = this.auth();
+    await auth.signInWithPhoneNumber(phoneNumber, verificationCode);
+  }
+
   async signOut() {
-    const auth = this.getAuth();
+    const auth = this.auth();
     await auth.signOut();
   }
 }

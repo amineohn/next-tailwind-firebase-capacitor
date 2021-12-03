@@ -4,7 +4,9 @@ import router from "next/router";
 import React, { FormEvent, useState } from "react";
 import FadeIn from "react-fade-in";
 import Loading from "../../components/loading";
+import { configuration } from "../../configuration";
 import { Firebase } from "../../libs/firebase";
+import { Validate } from "../../libs/validate";
 const NewPassword: NextPage = () => {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -12,6 +14,7 @@ const NewPassword: NextPage = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
   const fire = new Firebase();
+  const check = new Validate();
   const forgetPassword = async (e: FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -39,7 +42,7 @@ const NewPassword: NextPage = () => {
         setLoading(false);
       } catch (error: any) {
         setLoading(false);
-        const messages = fire.getErrors(error.code, error.message);
+        const messages = check.errors(error.code, error.message);
         setError(messages);
       }
     }
@@ -52,18 +55,18 @@ const NewPassword: NextPage = () => {
   return (
     <>
       <NextSeo
-        title="Demo | Change Password"
-        description=""
+        title={configuration.title}
+        description={configuration.description}
         openGraph={{
-          url: "http://URL.com",
-          title: "Demo",
-          description: "",
+          url: configuration.openGraph.url,
+          title: configuration.openGraph.title,
+          description: configuration.openGraph.description,
           images: [
             {
-              url: "/static/images/logos.jpg",
-              width: 800,
-              height: 600,
-              alt: "Hello",
+              url: configuration.openGraph.image,
+              width: configuration.openGraph.width,
+              height: configuration.openGraph.height,
+              alt: configuration.openGraph.alt,
             },
           ],
         }}
@@ -74,7 +77,7 @@ const NewPassword: NextPage = () => {
             className="fill-current text-black text-2xl font-bold"
             onClick={() => router.push("/")}
           >
-            Back
+            Logo
           </button>
         </div>
         <div className="w-full max-w-xs space-y-2">

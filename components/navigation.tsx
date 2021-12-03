@@ -27,24 +27,24 @@ const Navigation = () => {
                 <img
                   className="h-8 w-8 rounded-full"
                   src={
-                    (fire.getPhotoUrl() as string)
-                      ? (fire.getPhotoUrl() as string)
-                      : (fire.getDefaultPhotoUrl() as string)
+                    (fire.photoUrl() as string)
+                      ? (fire.photoUrl() as string)
+                      : (fire.defaultPhotoUrl() as string)
                   }
-                  alt={fire.getUserName() as string}
+                  alt={fire.userName() as string}
                 />
                 <div className="ml-3">
                   <p className="text-sm font-semibold text-green-50">
-                    {fire.getUserName() ? fire.getUserName() : "Anonyme"}
+                    {fire.userName() ? fire.userName() : "Anonyme"}
                   </p>
                   <p className="text-xs text-green-200">
-                    {fire.getEmail() ? fire.getEmail() : "anonyme@email.com"}
+                    {fire.email() ? fire.email() : "anonyme@email.com"}
                   </p>
                 </div>
               </div>
             </div>
             <div className="mt-5 space-y-2">
-              {!fire.getUser() ? (
+              {!fire.user() ? (
                 <>
                   <a
                     onClick={() => {

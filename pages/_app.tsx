@@ -9,6 +9,7 @@ import { SplashScreen } from "@capacitor/splash-screen";
 import { useRouter } from "next/router";
 import { Firebase } from "../libs/firebase";
 import { NextSeo } from "next-seo";
+import { configuration } from "../configuration";
 
 const Navigation = dynamic(() => import("../components/navigation"), {
   ssr: false,
@@ -39,25 +40,25 @@ export default function MyApp({
   const router = useRouter();
 
   useEffect(() => {
-    if (!fire.getAuth().currentUser) {
+    if (!fire.user()) {
       router.push("/");
     }
   }, []);
   return (
     <>
       <NextSeo
-        title="Demo | Login"
-        description=""
+        title={configuration.title}
+        description={configuration.description}
         openGraph={{
-          url: "http://URL.com",
-          title: "Demo",
-          description: "",
+          url: configuration.openGraph.url,
+          title: configuration.openGraph.title,
+          description: configuration.openGraph.description,
           images: [
             {
-              url: "/static/images/logos.jpg",
-              width: 800,
-              height: 600,
-              alt: "Hello",
+              url: configuration.openGraph.image,
+              width: configuration.openGraph.width,
+              height: configuration.openGraph.height,
+              alt: configuration.openGraph.alt,
             },
           ],
         }}
