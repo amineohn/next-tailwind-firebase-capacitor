@@ -23,7 +23,6 @@ export class Validate {
     return form.send.frequency.test(frequency);
   }
   errors(code: string, message: string) {
-    // list of errors codes and messages firebase english language with switch
     switch (code) {
       case "auth/email-already-in-use":
         message = "The email address is already in use by another account.";
