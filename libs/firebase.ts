@@ -7,7 +7,7 @@ import "firebase/compat/analytics";
 import "firebase/compat/performance";
 import "firebase/messaging";
 import router from "next/router";
-import { configuration } from "../configuration";
+import { configuration } from "../utils/configuration";
 export class Firebase {
   settings() {
     return {

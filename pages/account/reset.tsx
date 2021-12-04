@@ -4,7 +4,7 @@ import router from "next/router";
 import React, { FormEvent, useState } from "react";
 import FadeIn from "react-fade-in";
 import Loading from "../../components/loading";
-import { configuration } from "../../configuration";
+import { configuration } from "../../utils/configuration";
 import { Firebase } from "../../libs/firebase";
 import { Validate } from "../../libs/validate";
 const NewPassword: NextPage = () => {

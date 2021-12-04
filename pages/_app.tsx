@@ -9,7 +9,7 @@ import { SplashScreen } from "@capacitor/splash-screen";
 import { useRouter } from "next/router";
 import { Firebase } from "../libs/firebase";
 import { NextSeo } from "next-seo";
-import { configuration } from "../configuration";
+import { configuration } from "../utils/configuration";
 
 const Navigation = dynamic(() => import("../components/navigation"), {
   ssr: false,

@@ -6,7 +6,7 @@ import { Transition } from "@headlessui/react";
 import { Firebase } from "../libs/firebase";
 import router from "next/router";
 import { NextSeo } from "next-seo";
-import { configuration } from "../configuration";
+import { configuration } from "../utils/configuration";
 
 const SignUp = () => {
   const [error, setError] = useState("");

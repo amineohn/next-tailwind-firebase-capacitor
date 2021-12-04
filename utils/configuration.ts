@@ -1,4 +1,5 @@
 export const configuration = {
+  appId: "Demo-app",
   nameApp: "name-app",
   server: {
     url: "server-url",

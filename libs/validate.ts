@@ -1,4 +1,4 @@
-import { configuration } from "../configuration";
+import { configuration } from "../utils/configuration";
 export class Validate {
   constructor() {}
   email(email: string) {
