@@ -7,14 +7,14 @@ import Loading from "../../components/loading";
 import { configuration } from "../../utils/configuration";
 import { Firebase } from "../../libs/firebase";
 import { Validate } from "../../libs/validate";
-const forgetPassword: NextPage = () => {
+const Password: NextPage = () => {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
   const fire = new Firebase();
   const check = new Validate();
-  const forgetPassword = async (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setLoading(true);
     if (!email) {
@@ -129,7 +129,7 @@ const forgetPassword: NextPage = () => {
                 Enter your email address to reset your password
               </p>
             </div>
-            <form onSubmit={forgetPassword}>
+            <form onSubmit={handleSubmit}>
               <div className="mb-4">
                 <label
                   className="block text-gray-700 text-sm font-bold mb-2"
@@ -162,4 +162,4 @@ const forgetPassword: NextPage = () => {
   );
 };
 
-export default forgetPassword;
+export default Password;
