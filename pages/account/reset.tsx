@@ -15,7 +15,7 @@ const NewPassword: NextPage = () => {
   const [success, setSuccess] = useState(false);
   const fire = new Firebase();
   const check = new Validate();
-  const forgetPassword = async (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
@@ -136,7 +136,7 @@ const NewPassword: NextPage = () => {
                 Enter your new password
               </p>
             </div>
-            <form onSubmit={forgetPassword}>
+            <form onSubmit={handleSubmit}>
               <div className="mb-4">
                 <label
                   className="block text-gray-700 text-sm font-bold mb-2"
