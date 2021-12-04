@@ -7,9 +7,9 @@ import Loading from "../../components/loading";
 import { configuration } from "../../utils/configuration";
 import { Firebase } from "../../libs/firebase";
 import { Validate } from "../../libs/validate";
-const NewPassword: NextPage = () => {
+const newpassword: NextPage = () => {
   const [currentPassword, setCurrentPassword] = useState("");
-  const [newPassword, setNewPassword] = useState("");
+  const [newpassword, setnewpassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
@@ -19,25 +19,25 @@ const NewPassword: NextPage = () => {
     e.preventDefault();
     setLoading(true);
 
-    if (currentPassword === "" || newPassword === "") {
+    if (currentPassword === "" || newpassword === "") {
       setError("Please complete all fields");
       setLoading(false);
     }
-    if (currentPassword.length < 6 || newPassword.length < 6) {
+    if (currentPassword.length < 6 || newpassword.length < 6) {
       setError("Your password must contain at least 6 characters");
       setLoading(false);
     }
-    if (currentPassword === newPassword) {
+    if (currentPassword === newpassword) {
       setError("Your new password must be different from the old one");
       setLoading(false);
     }
     if (
       currentPassword !== "" &&
-      newPassword !== "" &&
-      currentPassword !== newPassword
+      newpassword !== "" &&
+      currentPassword !== newpassword
     ) {
       try {
-        await fire.updatePassword(currentPassword, newPassword);
+        await fire.updatePassword(currentPassword, newpassword);
         setSuccess(true);
         setLoading(false);
       } catch (error: any) {
@@ -156,17 +156,17 @@ const NewPassword: NextPage = () => {
               <div className="mb-4">
                 <label
                   className="block text-gray-700 text-sm font-bold mb-2"
-                  htmlFor="newPassword"
+                  htmlFor="newpassword"
                 >
                   New Password
                 </label>
                 <input
                   className="shadow appearance-none border bg-white rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="newPassword"
-                  type="newPassword"
+                  id="newpassword"
+                  type="newpassword"
                   placeholder="New password"
-                  value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
+                  value={newpassword}
+                  onChange={(e) => setnewpassword(e.target.value)}
                 />
               </div>
               <div className="flex items-center justify-between">
@@ -185,4 +185,4 @@ const NewPassword: NextPage = () => {
   );
 };
 
-export default NewPassword;
+export default newpassword;
