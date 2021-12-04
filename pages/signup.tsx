@@ -8,7 +8,7 @@ import router from "next/router";
 import { NextSeo } from "next-seo";
 import { configuration } from "../configuration";
 
-const signup = () => {
+const SignUp = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
   const [formData, setFormData] = useState({
@@ -21,11 +21,6 @@ const signup = () => {
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
-  // progress bar animation
-  const [progress, setProgress] = useState(0);
-  const [progressBar, setProgressBar] = useState(false);
-
-  // progress bar animation end
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -53,12 +48,6 @@ const signup = () => {
       setError("L'email doit être valide");
       return;
     }
-    setProgressBar(true);
-    setTimeout(() => {
-      setProgress(100);
-      setProgressBar(false);
-      setSuccess(true);
-    }, 2000);
 
     try {
       await fire.collection("users").add({
@@ -97,7 +86,6 @@ const signup = () => {
       setInterval(() => {
         setError("");
       }, 3500);
-      setProgressBar(true);
 
       setError("Password must be at least 6 characters");
       return;
@@ -258,4 +246,4 @@ const signup = () => {
     </>
   );
 };
-export default signup;
+export default SignUp;

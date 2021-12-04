@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Firebase } from "../libs/firebase";
 import { useRouter } from "next/router";
 import { Transition } from "@headlessui/react";
-const Navigation = () => {
+export default function Navigation() {
   const router = useRouter();
   const fire = new Firebase();
   const [showModal, setShowModal] = useState(false);
@@ -237,6 +237,4 @@ const Navigation = () => {
       </div>
     </>
   );
-};
-
-export default Navigation;
+}

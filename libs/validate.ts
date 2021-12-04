@@ -1,26 +1,26 @@
-import { form } from "../utils/regex";
+import { configuration } from "../configuration";
 export class Validate {
   constructor() {}
   email(email: string) {
-    return form.send.email.test(String(email).toLowerCase());
+    return configuration.regex.email.test(String(email).toLowerCase());
   }
   password(password: string) {
-    return form.send.password.test(password);
+    return configuration.regex.password.test(password);
   }
   phone(phone: string) {
-    return form.send.phone.test(phone);
+    return configuration.regex.phone.test(phone);
   }
   collectTime(collectTime: string) {
-    return form.send.collectTime.test(collectTime);
+    return configuration.regex.collectTime.test(collectTime);
   }
   adress(address: string) {
-    return form.send.address.test(address);
+    return configuration.regex.address.test(address);
   }
   name(name: string) {
-    return form.send.name.test(name);
+    return configuration.regex.name.test(name);
   }
   frequency(frequency: string) {
-    return form.send.frequency.test(frequency);
+    return configuration.regex.frequency.test(frequency);
   }
   errors(code: string, message: string) {
     switch (code) {

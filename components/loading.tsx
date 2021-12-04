@@ -1,4 +1,4 @@
-const Loading = ({ message }) => {
+export default function Loading({ message }) {
   return (
     <div className="flex space-x-1">
       <svg
@@ -24,5 +24,4 @@ const Loading = ({ message }) => {
       <span>{message}</span>
     </div>
   );
-};
-export default Loading;
+}
