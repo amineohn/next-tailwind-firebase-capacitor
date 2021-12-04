@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import router from "next/router";
 
-export const Error: NextPage = () => {
+const Error: NextPage = () => {
   return (
     <main className="bg-white relative overflow-hidden h-screen">
       <header className="absolute top-0 left-0 right-0 z-20">
@@ -323,3 +323,4 @@ export const Error: NextPage = () => {
     </main>
   );
 };
+export default Error;
