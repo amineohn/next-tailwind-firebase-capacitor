@@ -2,7 +2,7 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import React, { FormEvent, useState } from "react";
 import Loading from "./loading";
 
-const Checkout = () => {
+export default function Checkout() {
   const stripe = useStripe();
   const elements = useElements();
 
@@ -58,6 +58,4 @@ const Checkout = () => {
       </form>
     </>
   );
-};
-
-export default Checkout;
+}

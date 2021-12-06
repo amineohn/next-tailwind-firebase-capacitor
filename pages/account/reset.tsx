@@ -4,40 +4,36 @@ import router from "next/router";
 import React, { FormEvent, useState } from "react";
 import FadeIn from "react-fade-in";
 import Loading from "../../components/loading";
-import { configuration } from "../../configuration";
+import { configuration } from "../../utils/configuration";
 import { Firebase } from "../../libs/firebase";
 import { Validate } from "../../libs/validate";
-const NewPassword: NextPage = () => {
-  const [currentPassword, setCurrentPassword] = useState("");
-  const [newPassword, setNewPassword] = useState("");
+const Reset: NextPage = () => {
+  const [current, setCurrent] = useState("");
+  const [newpass, setNewPass] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
   const fire = new Firebase();
   const check = new Validate();
-  const forgetPassword = async (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
-    if (currentPassword === "" || newPassword === "") {
+    if (current === "" || newpass === "") {
       setError("Please complete all fields");
       setLoading(false);
     }
-    if (currentPassword.length < 6 || newPassword.length < 6) {
+    if (current.length < 6 || newpass.length < 6) {
       setError("Your password must contain at least 6 characters");
       setLoading(false);
     }
-    if (currentPassword === newPassword) {
+    if (current === newpass) {
       setError("Your new password must be different from the old one");
       setLoading(false);
     }
-    if (
-      currentPassword !== "" &&
-      newPassword !== "" &&
-      currentPassword !== newPassword
-    ) {
+    if (current !== "" && newpass !== "" && current !== newpass) {
       try {
-        await fire.updatePassword(currentPassword, newPassword);
+        await fire.updatePassword(current, newpass);
         setSuccess(true);
         setLoading(false);
       } catch (error: any) {
@@ -136,7 +132,7 @@ const NewPassword: NextPage = () => {
                 Enter your new password
               </p>
             </div>
-            <form onSubmit={forgetPassword}>
+            <form onSubmit={handleSubmit}>
               <div className="mb-4">
                 <label
                   className="block text-gray-700 text-sm font-bold mb-2"
@@ -149,24 +145,24 @@ const NewPassword: NextPage = () => {
                   id="password"
                   type="password"
                   placeholder="Enter your current password"
-                  value={currentPassword}
-                  onChange={(e) => setCurrentPassword(e.target.value)}
+                  value={current}
+                  onChange={(e) => setCurrent(e.target.value)}
                 />
               </div>
               <div className="mb-4">
                 <label
                   className="block text-gray-700 text-sm font-bold mb-2"
-                  htmlFor="newPassword"
+                  htmlFor="new"
                 >
                   New Password
                 </label>
                 <input
                   className="shadow appearance-none border bg-white rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="newPassword"
-                  type="newPassword"
+                  id="new"
+                  type="new"
                   placeholder="New password"
-                  value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
+                  value={newpass}
+                  onChange={(e) => setNewPass(e.target.value)}
                 />
               </div>
               <div className="flex items-center justify-between">
@@ -185,4 +181,4 @@ const NewPassword: NextPage = () => {
   );
 };
 
-export default NewPassword;
+export default Reset;

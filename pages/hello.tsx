@@ -1,5 +1,4 @@
 const Hello = () => {
-  // page content tailwindcss with typescript h1 hello
   return (
     <div className="flex items-center justify-center ">
       <div className="my-60 lg:my-60 h-screen">

@@ -7,16 +7,17 @@ import "firebase/compat/analytics";
 import "firebase/compat/performance";
 import "firebase/messaging";
 import router from "next/router";
+import { configuration } from "../utils/configuration";
 export class Firebase {
   settings() {
     return {
-      apiKey: "AIzaSyDB6kaXHG4Hycn-C57tgXZkz2CQeIm0Cs8",
-      authDomain: "fir-b57a9.firebaseapp.com",
-      projectId: "fir-b57a9",
-      storageBucket: "fir-b57a9.appspot.com",
-      messagingSenderId: "300061913823",
-      appId: "1:300061913823:web:e6b954d7671f7260f9ef6a",
-      measurementId: "G-WWSQ79NKM2",
+      apiKey: configuration.firebase.apiKey,
+      authDomain: configuration.firebase.authDomain,
+      projectId: configuration.firebase.projectId,
+      storageBucket: configuration.firebase.storageBucket,
+      messagingSenderId: configuration.firebase.messagingSenderId,
+      appId: configuration.firebase.appId,
+      measurementId: configuration.firebase.measurementId,
     };
   }
   constructor() {
