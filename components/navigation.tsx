@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Firebase } from "../libs/firebase";
 import { useRouter } from "next/router";
 import { Transition } from "@headlessui/react";
-export default function Navigation() {
+const Navigation = () => {
   const router = useRouter();
   const fire = new Firebase();
   const [showModal, setShowModal] = useState(false);
@@ -24,39 +24,15 @@ export default function Navigation() {
           <div className="relative bg-greenDDTV text-gray-300 p-4 rounded-lg shadow-lg flex flex-col w-64">
             <div className="flex items-center justify-between">
               <div className="flex items-center">
-                {fire.photoUrl() ? (
-                  <img
-                    className="w-8 h-8 rounded-full"
-                    src={fire.photoUrl() as string}
-                    alt={fire.userName() as string}
-                  />
-                ) : (
-                  <svg
-                    enable-background="new 312.809 0 401 401"
-                    version="1.1"
-                    viewBox="312.809 0 401 401"
-                    className="w-8 h-8 rounded-full"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g transform="matrix(1.223 0 0 1.223 -467.5 -843.44)">
-                      <rect
-                        x="601.45"
-                        y="653.07"
-                        width="401"
-                        height="401"
-                        fill="#FFFFFF"
-                      />
-                      <path
-                        d="m802.38 908.08c-84.515 0-153.52 48.185-157.38 108.62h314.79c-3.87-60.44-72.9-108.62-157.41-108.62z"
-                        fill="#97bba9"
-                      />
-                      <path
-                        d="m881.37 818.86c0 46.746-35.106 84.641-78.41 84.641s-78.41-37.895-78.41-84.641 35.106-84.641 78.41-84.641c43.31 0 78.41 37.9 78.41 84.64z"
-                        fill="#97bba9"
-                      />
-                    </g>
-                  </svg>
-                )}
+                <img
+                  className="h-8 w-8 rounded-full"
+                  src={
+                    (fire.photoUrl() as string)
+                      ? (fire.photoUrl() as string)
+                      : (fire.defaultPhotoUrl() as string)
+                  }
+                  alt={fire.userName() as string}
+                />
                 <div className="ml-3">
                   <p className="text-sm font-semibold text-green-50">
                     {fire.userName() ? fire.userName() : "Anonymous"}
@@ -261,4 +237,6 @@ export default function Navigation() {
       </div>
     </>
   );
-}
+};
+
+export default Navigation;

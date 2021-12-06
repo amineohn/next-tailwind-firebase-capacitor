@@ -42,7 +42,7 @@ export class Firebase {
   }
 
   defaultPhotoUrl() {
-    return "/static/images/blank-profile.png";
+    return "/static/images/default.svg";
   }
 
   email() {
