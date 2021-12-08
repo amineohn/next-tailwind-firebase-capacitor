@@ -155,7 +155,7 @@ const Login: NextPage = () => {
                 leave-from="opacity-100"
                 leave-to="opacity-0"
               >
-                <FadeIn className="bg-green-500 border border-green-100 text-white px-4 py-3 rounded-lg relative space-y-2 overflow-auto">
+                <FadeIn className="bg-green-500 border border-blue-100 text-white px-4 py-3 rounded-lg relative space-y-2 overflow-auto">
                   <div className="flex justify-end space-x-2">
                     <div className="inline-flex justify-center space-x-2">
                       <div className="flex">
@@ -166,7 +166,7 @@ const Login: NextPage = () => {
                     </div>
                     <div className="w-4 h-4 mt-0.5 bg-green-600 p-1 rounded-full">
                       <svg
-                        className="fill-current cursor-pointer text-green-100 hover:text-green-200 transition w-2 h-2 flex justify-items-end"
+                        className="fill-current cursor-pointer text-blue-100 hover:text-green-200 transition w-2 h-2 flex justify-items-end"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
                         onClick={() => setSuccess(false)}
@@ -210,9 +210,9 @@ const Login: NextPage = () => {
               <div className="flex items-center justify-between space-x-2">
                 <button
                   className={
-                    `py-2 px-5 flex justify-center items-center bg-greenDDTV hover:bg-green-800 focus:ring-green-800 focus:ring-offset-green-100 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg` +
+                    `py-2 px-5 flex justify-center items-center bg-blue-500 hover:bg-blue-700 focus:ring-blue-700 focus:ring-offset-blue-100 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg` +
                     (loading
-                      ? "py-2 px-4 flex justify-center items-center bg-greenDDTV hover:bg-green-800 focus:ring-green-800 focus:ring-offset-green-100 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg animate-pulse cursor-not-allowed"
+                      ? "py-2 px-4 flex justify-center items-center bg-blue-500 hover:bg-blue-700 focus:ring-blue-700 focus:ring-offset-blue-100 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg animate-pulse cursor-not-allowed"
                       : "")
                   }
                   type="submit"
@@ -228,9 +228,9 @@ const Login: NextPage = () => {
                 </button>
                 <button
                   className={
-                    `py-2 px-4 flex justify-center items-center bg-greenDDTV hover:bg-green-800 focus:ring-green-800 focus:ring-offset-green-100 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg` +
+                    `py-2 px-4 flex justify-center items-center bg-blue-500 hover:bg-blue-700 focus:ring-blue-700 focus:ring-offset-blue-100 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg` +
                     (loading
-                      ? "py-2 px-4 flex justify-center items-center bg-greenDDTV hover:bg-green-800 focus:ring-green-800 focus:ring-offset-green-100 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg animate-pulse cursor-not-allowed"
+                      ? "py-2 px-4 flex justify-center items-center bg-blue-500 hover:bg-blue-700 focus:ring-blue-700 focus:ring-offset-blue-100 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg animate-pulse cursor-not-allowed"
                       : "")
                   }
                   type="button"
@@ -266,7 +266,7 @@ const Login: NextPage = () => {
                 Sign in with google
               </button>
               <Link href="/account/password">
-                <a className="inline-block align-baseline text-center font-bold text-sm text-greenDDTV hover:text-green-800 ml-2">
+                <a className="inline-block align-baseline text-center font-bold text-sm text-blue-500 hover:text-blue-700 ml-2">
                   Forgot your password?
                 </a>
               </Link>
