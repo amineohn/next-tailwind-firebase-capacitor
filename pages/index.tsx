@@ -30,7 +30,7 @@ const Home: NextPage = () => {
               <a
                 href="https://vercel.com"
                 target="_blank"
-                rel="noopener"
+                rel="noreferrer"
                 className="ml-1"
               >
                 <svg
