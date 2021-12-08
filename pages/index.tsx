@@ -2,6 +2,7 @@ import router from "next/router";
 import type { NextPage } from "next";
 import React from "react";
 import FadeIn from "react-fade-in";
+
 const Home: NextPage = () => {
   return (
     <>
