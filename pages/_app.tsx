@@ -11,9 +11,6 @@ import { Firebase } from "../libs/firebase";
 import { NextSeo } from "next-seo";
 import Snowfall from "react-snowfall";
 import { configuration } from "../utils/configuration";
-const Navigation = dynamic(() => import("../components/navigation"), {
-  ssr: false,
-});
 const fire = new Firebase();
 const isAvailable = Capacitor.isPluginAvailable("StatusBar");
 const isAvailable2 = Capacitor.isPluginAvailable("SplashScreen");
@@ -65,10 +62,7 @@ export default function MyApp({
         }}
       />
       <ThemeProvider defaultTheme="light" attribute="class">
-        <div className="flex flex-col h-screen overflow-auto lg:overflow-y-hidden justify-between z-auto">
-          <Component {...pageProps} />
-          <Navigation />
-        </div>
+        <Component {...pageProps} />
       </ThemeProvider>
       <script src="https://cdn.jsdelivr.net/npm/datalist-css/dist/datalist-css.min.js" />
     </>
