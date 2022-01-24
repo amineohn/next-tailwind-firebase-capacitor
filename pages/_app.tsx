@@ -1,8 +1,6 @@
 import "../styles/globals.css";
-import React, { useEffect } from "react";
-import { ThemeProvider } from "next-themes";
+import { useEffect } from "react";
 import { NextPage } from "next";
-import dynamic from "next/dynamic";
 import { StatusBar, Style } from "@capacitor/status-bar";
 import { Capacitor } from "@capacitor/core";
 import { SplashScreen } from "@capacitor/splash-screen";
@@ -61,10 +59,7 @@ export default function MyApp({
           ],
         }}
       />
-      <ThemeProvider defaultTheme="light" attribute="class">
-        <Component {...pageProps} />
-      </ThemeProvider>
-      <script src="https://cdn.jsdelivr.net/npm/datalist-css/dist/datalist-css.min.js" />
+      <Component {...pageProps} />
     </>
   );
 }
